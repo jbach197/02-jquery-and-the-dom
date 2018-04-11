@@ -19,8 +19,6 @@ function Article (rawDataObj) {
   
 
 Article.prototype.toHtml = function() {
-  
-
 
   // COMMENT: What is the benefit of cloning the article? (see the jQuery docs)
   // Cloning the article using jQuery allows us to use jQuery commands on the article which we otherwise couldn't use on raw data.
@@ -34,12 +32,6 @@ Article.prototype.toHtml = function() {
 
   if (!this.publishedOn) $newArticle.addClass('draft');
 
-  //$newArticle.attr('data-category', this.category);
-  //$newArticle.attr('a', this.name);
-  //$newArticle.attr('a href', this.url);
-  //$newArticle.attr('h1', this.title);
-  //$newArticle.attr('article-body', this.body);
-  //$newArticle.attr('pubdate datetime', this.publishedOn);
 
   /* TODO: Now use jQuery traversal and setter methods to fill in the rest of the current template clone with values of the properties of this particular Article instance.
     We need to fill in:
