@@ -5,9 +5,13 @@ let articles = [];
 // COMMENT: What is the purpose of the following function? Why is its name capitalized? Explain the context of "this" within the function. What does "rawDataObj" represent?
 // The name of the function is capitalized because it is a constructor function. Each this refers to specific object in the array and the properties of that object.
 
+
 function Article (rawDataObj) {
   // TODO: Use the JS object that is passed in to complete this constructor function:
   // Save ALL the properties of `rawDataObj` into `this`
+  
+
+Article.prototype.toHtml = function() {
   this.title = rawDataObj.title;
   this.category = rawDataObj.category;
   this.author = rawDataObj.author;
@@ -16,9 +20,9 @@ function Article (rawDataObj) {
   this.body = rawDataObj.body;
 }
 
-Article.prototype.toHtml = function() {
   // COMMENT: What is the benefit of cloning the article? (see the jQuery docs)
   // Cloning the article using jQuery allows us to use jQuery commands on the article which we otherwise couldn't use on raw data.
+
 
   let $newArticle = $('article.template').clone();
   /* TODO DONE: This cloned article still has a class of template. In our modules.css stylesheet, we should give all elements with a class of template a display of none so that our template does not display in the browser. But, we also need to make sure we're not accidentally hiding our cloned article. */
@@ -56,10 +60,20 @@ rawData.sort(function(a,b) {
 
 // TODO: Refactor these for loops using the .forEach() array method.
 
-for(let i = 0; i < rawData.length; i++) {
-  articles.push(new Article(rawData[i]));
+
+rawData.forEach( function(val i)) {
+  articles.push(new Article(rawData[i]);
 }
 
-for(let i = 0; i < articles.length; i++) {
+//for(let i = 0; i < rawData.length; i++) {
+//  articles.push(new Article(rawData[i]));
+//}
+
+articles.forEach( function(val,i)) {
   $('#articles').append(articles[i].toHtml());
 }
+
+
+//for(let i = 0; i < articles.length; i++) {
+//  $('#articles').append(articles[i].toHtml());
+//}
