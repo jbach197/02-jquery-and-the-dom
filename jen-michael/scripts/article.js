@@ -3,6 +3,8 @@
 let articles = [];
 
 // COMMENT: What is the purpose of the following function? Why is its name capitalized? Explain the context of "this" within the function. What does "rawDataObj" represent?
+// The name of the function is capitalized because it is a constructor function. Each this refers to specific object in the array and the properties of that object.
+
 
 function Article (rawDataObj) {
   // TODO: Use the JS object that is passed in to complete this constructor function:
@@ -10,14 +12,32 @@ function Article (rawDataObj) {
   
 
 Article.prototype.toHtml = function() {
+  this.title = rawDataObj.title;
+  this.category = rawDataObj.category;
+  this.author = rawDataObj.author;
+  this.authorUrl = rawDataObj.authorUrl;
+  this.publishedOn = rawDataObj.publishedOn;
+  this.body = rawDataObj.body;
+}
+
   // COMMENT: What is the benefit of cloning the article? (see the jQuery docs)
+  // Cloning the article using jQuery allows us to use jQuery commands on the article which we otherwise couldn't use on raw data.
+
 
   let $newArticle = $('article.template').clone();
-  /* TODO: This cloned article still has a class of template. In our modules.css stylesheet, we should give all elements with a class of template a display of none so that our template does not display in the browser. But, we also need to make sure we're not accidentally hiding our cloned article. */
+  /* TODO DONE: This cloned article still has a class of template. In our modules.css stylesheet, we should give all elements with a class of template a display of none so that our template does not display in the browser. But, we also need to make sure we're not accidentally hiding our cloned article. */
+  // .template {
+  //   display; none;
+  // }
 
   if (!this.publishedOn) $newArticle.addClass('draft');
 
   $newArticle.attr('data-category', this.category);
+  $newArticle.attr('a', this.name);
+  $newArticle.attr('a href', this.url);
+  $newArticle.attr('h1', this.title);
+  $newArticle.attr('article-body', this.body);
+  $newArticle.attr('pubdate datetime', this.publishedOn);
 
   /* TODO: Now use jQuery traversal and setter methods to fill in the rest of the current template clone with values of the properties of this particular Article instance.
     We need to fill in:
